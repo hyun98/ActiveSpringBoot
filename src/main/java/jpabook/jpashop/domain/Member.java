@@ -1,6 +1,5 @@
 package jpabook.jpashop.domain;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +22,5 @@ public class Member {
     
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+    
 }
