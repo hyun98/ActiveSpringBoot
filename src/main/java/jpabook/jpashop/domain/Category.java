@@ -22,7 +22,12 @@ public class Category {
 
     @ManyToMany(mappedBy = "items")
     private List<Item> items = new ArrayList<>();
-    
-    private 
+
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Category parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Category> child = new ArrayList<>();
     
 }
