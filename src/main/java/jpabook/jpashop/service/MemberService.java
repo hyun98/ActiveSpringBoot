@@ -52,4 +52,14 @@ public class MemberService {
         return memberRepository.findOne(memberId);
     }
 
+
+    
+    // member를 반환하지 않고 void를 반환하는 이유?
+    // 1. 영속성이 끊긴 member를 반환하게된다.
+    // 커맨드와 쿼리가 같이 있으면 안됨
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
 }
