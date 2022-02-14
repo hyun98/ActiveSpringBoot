@@ -23,6 +23,7 @@ public class MemberApiController {
     public List<Member> membersV1() {
         
         // 실제 엔티티를 반환하면 안됨
+        // 지금 무한 루프
         return memberService.findMembers();
     }
 

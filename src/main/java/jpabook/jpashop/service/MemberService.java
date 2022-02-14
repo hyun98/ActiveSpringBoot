@@ -31,7 +31,6 @@ public class MemberService {
 
     private boolean is_valid(Member member) {
         validateDuplicateMember(member);
-
         return true;
     }
 
