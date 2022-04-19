@@ -25,6 +25,7 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    // 중계 테이블에는 JsonIgnore 필수
     @JsonIgnore
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
