@@ -1,7 +1,9 @@
 FROM openjdk:11
 
-COPY . /home/spring
+ARG JAR_FILE=build/libs/jpashop-0.0.1-SNAPSHOT.jar
 
-WORKDIR /home/spring
+COPY ${JAR_FILE} /HOME/spring/app.jar
+
+WORKDIR /HOME/spring/
 
 EXPOSE 8080
