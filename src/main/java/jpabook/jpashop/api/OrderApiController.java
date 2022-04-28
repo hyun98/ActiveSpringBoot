@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderApiController {
 
-    // 엔티티를 직접 노출하면 안됨. 나쁜 예제
-    private final OrderRepository orderRepository;
     private final OrderQueryRepository orderQueryRepository;
+    private final OrderRepository orderRepository;
 
+    // 엔티티를 직접 노출하면 안됨. 나쁜 예제
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
@@ -86,6 +86,10 @@ public class OrderApiController {
         return orderQueryRepository.findOrderQueryDtos();
     }
 
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> ordersV5() {
+        return orderQueryRepository.findAllByDto_optimization();
+    }
 
     @Data
     static class OrderDto {
