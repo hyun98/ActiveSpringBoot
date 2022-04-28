@@ -81,4 +81,21 @@ public class OrderQueryRepository {
                 .collect(Collectors.toList());
         return orderIds;
     }
+
+    // 페이징 안됨
+    // 쿼리는 1번이지만 조인으로 인해 DB 에서 애플리케이션에 전달하는 데이터에 중복 데이터가 추가되므로
+    // 상황에 따라 V5 보다 느릴 수도 있다.
+    // 애플리케이션에서 추가 작업이 많다.
+    public List<OrderFlatDto> findAllByDto_flat() {
+        return em.createQuery(
+                        "select new " +
+                                "jpabook.jpashop.repository.order.query.OrderFlatDto(o.id, m.name, o.orderDate, o.status, d.address, i.name, oi.orderPrice, oi.count)" +
+                                "from Order o " +
+                                "join o.member m " +
+                                "join o.delivery d " +
+                                "join o.orderItems oi " +
+                                "join oi.item i", OrderFlatDto.class)
+                .getResultList();
+        
+    }
 }
